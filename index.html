@@ -1,0 +1,387 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>SpringCloud微服务</title>
+</head>
+<body><h1 id='springcloud微服务'>SpringCloud微服务</h1>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110162725672.png" referrerpolicy="no-referrer" alt="image-20221110162725672"></p>
+<h1 id='微服务技术栈'>微服务技术栈</h1>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110163654420.png" referrerpolicy="no-referrer" alt="image-20221110163654420"></p>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110163711939.png" referrerpolicy="no-referrer" alt="image-20221110163711939"></p>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110163751747.png" referrerpolicy="no-referrer" alt="image-20221110163751747"></p>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110163925218.png" referrerpolicy="no-referrer" alt="image-20221110163925218"></p>
+<h1 id='分层次教学'>分层次教学</h1>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110164220704.png" referrerpolicy="no-referrer" alt="image-20221110164220704"></p>
+<h1 id='微服务框架--------springcloud微服务架构'>微服务框架 —— SpringCloud微服务架构</h1>
+<h2 id='认识微服务'>认识微服务</h2>
+<h3 id='服务架构演变'>服务架构演变</h3>
+<h4 id='单体架构'>单体架构</h4>
+<ul>
+<li>单体架构：将业务的所有功能集中在一个项目中开发，打成一个包部署。</li>
+<li>优点：架构简单、部署成本低。</li>
+<li>缺点：耦合度高。</li>
+
+</ul>
+<h4 id='分布式架构'>分布式架构</h4>
+<ul>
+<li>分布式架构：根据业务功能对系统进行拆分，每个业务模块作为独立项目开发，称为一个服务。</li>
+<li>优点：降低服务耦合、有利于服务升级拓展。</li>
+
+</ul>
+<h4 id='服务治理'>服务治理</h4>
+<ul>
+<li><p>分布式架构的要考虑的问题：</p>
+<ul>
+<li>服务拆分粒度如何？</li>
+<li>服务集群地址如何维护？</li>
+<li>服务之间如何实现远程调用？</li>
+<li>服务健康状态如何感知？</li>
+
+</ul>
+</li>
+<li><p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110165157549.png" referrerpolicy="no-referrer" alt="image-20221110165157549"></p>
+</li>
+
+</ul>
+<h4 id='微服务'>微服务</h4>
+<ul>
+<li><p>微服务是一种经过良好架构设计的分布式架构方案。</p>
+</li>
+<li><p>微服务架构特征：</p>
+<ul>
+<li>单一职责：微服务拆分粒度更小，每一个服务都对应唯一的业务能力，做到单一职责，避免重复业务开发。</li>
+<li>面向服务：微服务对外暴露业务接口。</li>
+<li>自治：团队独立、技术独立、数据独立、部署独立。</li>
+<li>隔离性强：服务调用做好隔离、容错、降级，避免出现级联问题。</li>
+
+</ul>
+</li>
+<li><p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110165526281.png" referrerpolicy="no-referrer" alt="image-20221110165526281"></p>
+</li>
+
+</ul>
+<h4 id='总结-1'>总结</h4>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110165600770.png" referrerpolicy="no-referrer" alt="image-20221110165600770"></p>
+<h3 id='微服务技术对比'>微服务技术对比</h3>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110170210022.png" referrerpolicy="no-referrer" alt="image-20221110170210022"></p>
+<h4 id='企业需求'>企业需求</h4>
+<p><img src="http://qny.expressisland.cn/schoolOpens/image-20221110170343306.png" referrerpolicy="no-referrer" alt="image-20221110170343306"></p>
+<h3 id='springcloud'>SpringCloud</h3>
+<ul>
+<li>SpringCloud是目前国内使用最广泛的微服务框架。</li>
+<li>官网地址: <a href='https://spring.io/projects/spring-cloud' target='_blank' class='url'>https://spring.io/projects/spring-cloud</a></li>
+<li>SpringCloud集成了各种微服务功能组件，并基于SpringBoot实现了这些组件的自动装配，从而提供了良好的开箱即用体验。</li>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221110170541392.png" referrerpolicy="no-referrer" alt="image-20221110170541392"></li>
+
+</ul>
+<h4 id='springcloud与springboot的版本兼容关系'>SpringCloud与SpringBoot的版本兼容关系</h4>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221110170725920.png" referrerpolicy="no-referrer" alt="image-20221110170725920"></li>
+<li>例如我们学习的版本是Hoxton.SR10，因此对应的SpringBoot版本是2.3.x版本。</li>
+
+</ul>
+<p>### </p>
+<h2 id='分布式服务架构案例'>分布式服务架构案例</h2>
+<h3 id='服务拆分及远程调用'>服务拆分及远程调用</h3>
+<h4 id='服务拆分注意事项'>服务拆分注意事项</h4>
+<p>1．不同微服务，不要重复开发相同业务。
+2．微服务数据独立，不要访问其它微服务的数据库。
+3．微服务可以将自己的业务暴露为接口，供其它微服务调用。</p>
+<h4 id='导入服务拆分democloud-demo）'>导入&quot;服务拆分Demo（cloud-demo）&quot;</h4>
+<h5 id='项目结构'>项目结构</h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221110171311239.png" referrerpolicy="no-referrer" alt="image-20221110171311239"></li>
+
+</ul>
+<h4 id='sql同样新建两个数据库）'>sql（同样新建两个数据库）</h4>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221110171340485.png" referrerpolicy="no-referrer" alt="image-20221110171340485"></li>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113215003474.png" referrerpolicy="no-referrer" alt="image-20221113215003474"></li>
+
+</ul>
+<h5 id='cloud-usersql'>cloud-user.sql</h5>
+<pre><code class='language-sql' lang='sql'>/*
+ Navicat Premium Data Transfer
+
+ Source Server         : local
+ Source Server Type    : MySQL
+ Source Server Version : 50622
+ Source Host           : localhost:3306
+ Source Schema         : heima
+
+ Target Server Type    : MySQL
+ Target Server Version : 50622
+ File Encoding         : 65001
+
+ Date: 01/04/2021 14:57:18
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tb_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT &#39;收件人&#39;,
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT &#39;地址&#39;,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `username`(`username`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_user
+-- ----------------------------
+INSERT INTO `tb_user` VALUES (1, &#39;柳岩&#39;, &#39;湖南省衡阳市&#39;);
+INSERT INTO `tb_user` VALUES (2, &#39;文二狗&#39;, &#39;陕西省西安市&#39;);
+INSERT INTO `tb_user` VALUES (3, &#39;华沉鱼&#39;, &#39;湖北省十堰市&#39;);
+INSERT INTO `tb_user` VALUES (4, &#39;张必沉&#39;, &#39;天津市&#39;);
+INSERT INTO `tb_user` VALUES (5, &#39;郑爽爽&#39;, &#39;辽宁省沈阳市大东区&#39;);
+INSERT INTO `tb_user` VALUES (6, &#39;范兵兵&#39;, &#39;山东省青岛市&#39;);
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre>
+<h5 id='cloud-ordersql'>cloud-order.sql</h5>
+<pre><code class='language-sql' lang='sql'>/*
+ Navicat Premium Data Transfer
+
+ Source Server         : local
+ Source Server Type    : MySQL
+ Source Server Version : 50622
+ Source Host           : localhost:3306
+ Source Schema         : heima
+
+ Target Server Type    : MySQL
+ Target Server Version : 50622
+ File Encoding         : 65001
+
+ Date: 01/04/2021 14:57:18
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tb_order
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_order`;
+CREATE TABLE `tb_order`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT &#39;订单id&#39;,
+  `user_id` bigint(20) NOT NULL COMMENT &#39;用户id&#39;,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT &#39;商品名称&#39;,
+  `price` bigint(20) NOT NULL COMMENT &#39;商品价格&#39;,
+  `num` int(10) NULL DEFAULT 0 COMMENT &#39;商品数量&#39;,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `username`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tb_order
+-- ----------------------------
+INSERT INTO `tb_order` VALUES (101, 1, &#39;Apple 苹果 iPhone 12 &#39;, 699900, 1);
+INSERT INTO `tb_order` VALUES (102, 2, &#39;雅迪 yadea 新国标电动车&#39;, 209900, 1);
+INSERT INTO `tb_order` VALUES (103, 3, &#39;骆驼（CAMEL）休闲运动鞋女&#39;, 43900, 1);
+INSERT INTO `tb_order` VALUES (104, 4, &#39;小米10 双模5G 骁龙865&#39;, 359900, 1);
+INSERT INTO `tb_order` VALUES (105, 5, &#39;OPPO Reno3 Pro 双模5G 视频双防抖&#39;, 299900, 1);
+INSERT INTO `tb_order` VALUES (106, 6, &#39;美的（Midea) 新能效 冷静星II &#39;, 544900, 1);
+INSERT INTO `tb_order` VALUES (107, 2, &#39;西昊/SIHOO 人体工学电脑椅子&#39;, 79900, 1);
+INSERT INTO `tb_order` VALUES (108, 3, &#39;梵班（FAMDBANN）休闲男鞋&#39;, 31900, 1);
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre>
+<h4 id='启动服务---测试'>启动服务 - 测试</h4>
+<h5 id='访问httplocalhost8080order101'>访问<a href='http://localhost:8080/order/101' target='_blank' class='url'>http://localhost:8080/order/101</a></h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113220209470.png" referrerpolicy="no-referrer" alt="image-20221113220209470"></li>
+
+</ul>
+<h5 id='访问httplocalhost8081user1'>访问<a href='http://localhost:8081/user/1' target='_blank' class='url'>http://localhost:8081/user/1</a></h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113220219632.png" referrerpolicy="no-referrer" alt="image-20221113220219632"></li>
+
+</ul>
+<h4 id='服务间远程调用'>服务间远程调用</h4>
+<h5 id='案例--------根据订单id查询订单功能'>案例 —— 根据订单id查询订单功能</h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113220507237.png" referrerpolicy="no-referrer" alt="image-20221113220507237"></li>
+
+</ul>
+<h5 id='远程调用方式分析'>远程调用方式分析</h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113220630765.png" referrerpolicy="no-referrer" alt="image-20221113220630765"></li>
+
+</ul>
+<h5 id='步骤--------1）注册resttemplate'>步骤 —— 1）注册RestTemplate</h5>
+<ul>
+<li>在order-service的OrderApplication中注册RestTemplate。</li>
+
+</ul>
+<h6 id='orderapplication'>OrderApplication</h6>
+<pre><code class='language-java' lang='java'>@MapperScan(&quot;cn.itcast.order.mapper&quot;)
+@SpringBootApplication
+public class OrderApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(OrderApplication.class, args);
+    }
+
+//    创建RestTemplate并注入Spring容器
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
+}
+</code></pre>
+<h5 id='步骤--------2）服务远程调用resttemplate'>步骤 —— 2）服务远程调用RestTemplate</h5>
+<ul>
+<li>修改order-service中的OrderService的queryOrderByld方法。</li>
+
+</ul>
+<pre><code class='language-java' lang='java'>@Service
+public class OrderService {
+
+    @Autowired
+    private OrderMapper orderMapper;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    public Order queryOrderById(Long orderId) {
+        // 1.查询订单
+        Order order = orderMapper.findById(orderId);
+
+//        2.利用RestTemplate发起http请求，查询用户
+        //2.1 url路径
+        String url = &quot;http://localhost:8081/user/&quot; + order.getUserId();
+        // 2.2 发起http请求，实现远程调用
+        User user = restTemplate.getForObject(url, User.class);
+        // 3. 封装user到order
+        order.setUser(user);
+
+        // 4.返回
+        return order;
+    }
+}
+</code></pre>
+<h5 id='测试'>测试</h5>
+<ul>
+<li>访问<a href='http://localhost:8080/order/101' target='_blank' class='url'>http://localhost:8080/order/101</a></li>
+<li>可以正常显示user信息。</li>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113221856675.png" referrerpolicy="no-referrer" alt="image-20221113221856675"></li>
+
+</ul>
+<h5 id='总结-2'>总结</h5>
+<ul>
+<li><p>微服务调用方式</p>
+<ul>
+<li>基于RestTemplate发起的http请求实现远程调用。</li>
+<li>http请求做远程调用是与语言无关的调用，只要知道对方的ip、端口、接口路径、请求参数即可。</li>
+
+</ul>
+</li>
+
+</ul>
+<h5 id='提供者与消费者'>提供者与消费者</h5>
+<ul>
+<li>服务提供者：一次业务中，被其它微服务调用的服务。（提供接口给其它微服务）</li>
+<li>服务消费者：一次业务中，调用其它微服务的服务。（调用其它微服务提供的接口）</li>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113222308110.png" referrerpolicy="no-referrer" alt="image-20221113222308110"></li>
+
+</ul>
+<h5 id='思考'>思考</h5>
+<ul>
+<li>服务A调用服务B，服务B调用服务C，那么服务B是什么角色？</li>
+<li>提供者与消费者角色其实是相对的，<strong>一个服务可以同时是服务提供者和服务消费者</strong>。</li>
+
+</ul>
+<h2 id='eureka注册中心'>Eureka注册中心</h2>
+<h3 id='远程调用的问题'>远程调用的问题</h3>
+<ul>
+<li>在此之前采用了硬编码的方式，将地址写死了。</li>
+<li>那服务消费者该如何获取服务提供者的地址信息？</li>
+<li>如果有多个服务提供者，消费者该如何选择？</li>
+<li>消费者如何得知服务提供者的健康状态？</li>
+
+</ul>
+<h3 id='eureka的作用原理）'>Eureka的作用（原理）</h3>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113223448564.png" referrerpolicy="no-referrer" alt="image-20221113223448564"></li>
+
+</ul>
+<h5 id='消费者该如何获取服务提供者具体信息'>消费者该如何获取服务提供者具体信息？</h5>
+<ul>
+<li>服务提供者启动时向eureka注册自己的信息。</li>
+<li>eureka保存这些信息。</li>
+<li>消费者根据服务名称向eureka拉取提供者信息。</li>
+
+</ul>
+<h5 id='如果有多个服务提供者消费者该如何选择'>如果有多个服务提供者，消费者该如何选择？</h5>
+<ul>
+<li>服务消费者利用负载均衡算法，从服务列表中挑选一个。</li>
+
+</ul>
+<h5 id='消费者如何感知服务提供者健康状态'>消费者如何感知服务提供者健康状态？</h5>
+<ul>
+<li>服务提供者会每隔30秒向EurekaServer发送心跳请求，报告健康状态。</li>
+<li>eureka会更新记录服务列表信息，心跳不正常会被剔除。</li>
+<li>消费者就可以拉取到最新的信息。</li>
+
+</ul>
+<h5 id='总结-3'>总结</h5>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113224942604.png" referrerpolicy="no-referrer" alt="image-20221113224942604"></li>
+
+</ul>
+<h3 id='动手实践'>动手实践</h3>
+<ul>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113225130353.png" referrerpolicy="no-referrer" alt="image-20221113225130353"></li>
+
+</ul>
+<h3 id='搭建eurekaserver'>搭建EurekaServer</h3>
+<h4 id='1）创建项目引入spring-cloud-starter-netflix-eureka-server的依赖'>（1）创建项目，引入spring-cloud-starter-netflix-eureka-server的依赖</h4>
+<pre><code class='language-xml' lang='xml'>&lt;!--eureka服务端--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h4 id='2）编写启动类添加enableeurekaserver注解'>（2）编写启动类，添加@EnableEurekaServer注解</h4>
+<pre><code class='language-java' lang='java'>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@EnableEurekaServer
+@SpringBootApplication
+public class EurekaApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaApplication.class, args);
+    }
+}
+</code></pre>
+<h4 id='3）添加applicationyml文件编写下面的配置'>（3）添加application.yml文件，编写下面的配置</h4>
+<pre><code class='language-yaml' lang='yaml'>server:
+  port: 10086 # 服务端口
+spring:
+  application:
+    name: eurekaserver # eureka的服务名称
+eureka:
+  client:
+    service-url:  # eureka的地址信息
+      defaultZone: http://127.0.0.1:10086/eureka
+</code></pre>
+<h4 id='访问eureka管理端'>访问Eureka管理端</h4>
+<ul>
+<li><a href='http://localhost:10086/' target='_blank' class='url'>http://localhost:10086/</a></li>
+<li><img src="http://qny.expressisland.cn/schoolOpens/image-20221113232211600.png" referrerpolicy="no-referrer" alt="image-20221113232211600"></li>
+
+</ul>
+<h3 id='服务注册'>服务注册</h3>
+<p><a href='https://www.bilibili.com/video/av717242269/?p=12' target='_blank' class='url'>https://www.bilibili.com/video/av717242269/?p=12</a></p>
+<h3 id='服务发现'>服务发现</h3>
+<h2 id='ribbon负载均衡原理'>Ribbon负载均衡原理</h2>
+<h2 id='nacos注册中心'>Nacos注册中心</h2>
+</body>
+</html>
